@@ -11,10 +11,10 @@ class Contacts:
         file.close()
 
     def search(self, q:str):
-        return [contact['name'] for contact in self.contacts if q in contact['name']]
+        return [contact for contact in self.contacts if q in contact]
 
     def getContactsNames(self):
-        return [contact['name'] for contact in self.contacts]
+        return [contact for contact in self.contacts]
 
 bibib = Contacts()
 
@@ -27,10 +27,10 @@ def index():
 def contact():
     search = request.args.get('q', '')
     if search:
-        return render_template("index.html", numbers=bibib.search(search))
+        return render_template("index.html", contacts=bibib.search(search))
     else:
-        return render_template("index.html", numbers=bibib.getContactsNames())
+        return render_template("index.html", contacts=bibib.getContactsNames())
 
-# @app.route("/contact/<name>")
-# def contactInfos():
-    
+@app.route("/contact/<name>")
+def contactInfos(name):
+    return render_template("contactInfo.html", name=name, contact=bibib.contacts[name])

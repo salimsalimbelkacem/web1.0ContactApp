@@ -3,21 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title></title>
 </head>
 <body>
 	<div>
-		<form>
-			<label>Search:</label>
-			<input name="q"/>
-		</form>
-		<ul>
-			{% for contact in contacts %}
-			<li><a href="/contact/{{contact}}">{{contact}}</a></li>
-			{% endfor %}
-		</ul>
+		<h1>{{name}}</h1>
+		{% for item in contact %}
+		<h3>{{item}}:</h3> {{contact[item]}}
+		{% endfor %}
 	</div>
-	
+
 	<style>
 		body{
 			background: #1a1a1a;
@@ -31,4 +26,3 @@
 	</style>
 </body>
 </html>
-
