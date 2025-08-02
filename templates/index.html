@@ -1,11 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
 
-	<a href="/new_contact"> add a contact </a>
-<form>
+<h1>Contact List</h1>
+
+<form style="display:inline;">
 	<label>Search:</label>
 	<input name="q"/>
+	<input type="submit"/>
+	
 </form>
+<a href="/new_contact"> <button> add a contact </button></a>
 <ul>
 	{% for contact in contacts %}
 		<li><a href="/contact/{{contact}}">{{contact}}</a></li>
