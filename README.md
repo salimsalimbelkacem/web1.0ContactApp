@@ -12,3 +12,9 @@ that is a script tag and basicaly do a xss attack but i mean it doesn't matter r
 it is just here because i wanted to test if i can do it myself without reading
 the mini tutorial in the book, the [original code](https://github.com/bigskysoftware/contact-app) 
 is probably better than this spaggeti garbage i just did :P
+
+the app can't do these tho hehehe
+- Edit the details of a contact
+- Delete a contact
+
+i'm too lazy to do them so yeah
