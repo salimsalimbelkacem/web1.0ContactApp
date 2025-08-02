@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request
-import json
+from json import loads, dumps
 
 app = Flask(__name__)
 
@@ -7,17 +7,20 @@ app = Flask(__name__)
 class Contacts:
     def __init__(self) -> None:
         file = open("contacts.json", "r")
-        self.contacts = json.loads(file.read())
+        self.contacts = loads(file.read() + "}")
         file.close()
 
     def search(self, q:str):
         return [contact for contact in self.contacts if q in contact]
 
-    def getContactsNames(self):
+    def get_contacts_names(self):
         return [contact for contact in self.contacts]
 
-bibib = Contacts()
-
+    def write_to_contact_file(self, data:dict):
+        file = open("contacts.json", "a")
+        json_data = dumps(data)[1:-1]
+        file.write("," + json_data)
+        file.close()
 
 @app.route("/")
 def index():
@@ -26,11 +29,22 @@ def index():
 @app.route("/contact")
 def contact():
     search = request.args.get('q', '')
-    if search:
-        return render_template("index.html", contacts=bibib.search(search))
-    else:
-        return render_template("index.html", contacts=bibib.getContactsNames())
+    return render_template("index.html", contacts = (Contacts().search(search) 
+                                                    if search else Contacts().get_contacts_names()))
 
 @app.route("/contact/<name>")
 def contactInfos(name):
-    return render_template("contactInfo.html", name=name, contact=bibib.contacts[name])
+    return render_template("contactInfo.html", name=name, contact=Contacts().contacts[name])
+
+@app.get("/new_contact")
+def add():
+    return render_template("newContact.html")
+
+@app.post("/new_contact")
+def hum():
+    Contacts().write_to_contact_file( {
+            request.form['name']:{
+                "number":request.form['number'],
+                "email":request.form['email']
+                } })
+    return redirect("/")

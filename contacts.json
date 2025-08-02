@@ -1,19 +1,4 @@
 {
-	"salim":
-	{
-		"number":"0542315370",
-		"email":"lesalgeriensdesstars@gmail.com"
-	},
-
-	"mohamed":
-	{
-		"number":"0542315370",
-		"email":"lesalgeriensdesstars@gmail.com"
-	},
-
-	"mok":
-	{
-		"number":"0542315370",
-		"email":"pipi"
-	}
-}
+"salim": { "number":"0542315370", "email":"lesalgeriensdesstars@gmail.com" }
+,"mohamed": { "number":"0542315370", "email":"lesalgeriensdesstars@gmail.com" }
+,"liza": {"number": "055055005", "email": "i love you liza"}
